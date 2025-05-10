@@ -2,6 +2,7 @@ package com.ideas.springboot.form.controllers;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import com.ideas.springboot.form.Utils.NombreMayusculaEditor;
 import com.ideas.springboot.form.domain.Pais;
 import com.ideas.springboot.form.domain.Usuario;
+import com.ideas.springboot.form.service.PaisService;
 import com.ideas.springboot.form.validator.UsuarioValidador;
 
 import jakarta.validation.Valid;
@@ -34,6 +36,9 @@ public class FormController {
 
 	@Autowired
 	private UsuarioValidador validator;
+	
+	@Autowired
+	private PaisService paisService;
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
@@ -58,13 +63,26 @@ public class FormController {
 
 	@ModelAttribute("listaPaises")
 	public List<Pais> listaPaises() {
-		return Arrays.asList(
-				new Pais(1, "ES", "Espana"), 
-				new Pais(2, "MX", "México"), 
-				new Pais(3, "CL", "Chile"),
-				new Pais(4, "AR", "Argentina"), 
-				new Pais(5, "CO", "Colombia"), 
-				new Pais(6, "VE", "Venezuela"));
+		return paisService.listar();
+	}
+	
+	@ModelAttribute("listaRolesString")
+	public List<String> listaRolesString(){
+		List<String> roles = new ArrayList<>();
+		roles.add("ROLE_ADMIN");
+		roles.add("ROLE_USER");
+		roles.add("ROLE_MODERATOR");
+		return roles;
+	}
+	
+	@ModelAttribute("listaRolesMap")
+	public Map<String, String> listaRolesMap() {
+		Map<String, String> roles = new HashMap<String, String>();
+		roles.put("ROLE_ADMIN", "Administrador");
+		roles.put("ROLE_USER", "Usuario");
+		roles.put("ROLE_MODERATOR", "Moderador");
+
+		return roles;
 	}
 
 	@ModelAttribute("paises")
