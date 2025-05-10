@@ -18,6 +18,14 @@
 			<div th:if="${#fields.hasErrors('pais.id')}" th:errors="*{pais.id}"></div>
 		</div>
 		<div>
+			<label>Roles</label>
+			<div th:each="role: ${listaRolesMap.entrySet()}">
+				<input type="checkbox" th:field="*{roles}" th:value="${role.key}">
+				<label th:for="${#ids.prev('roles')}" th:text="${role.value}"></label>
+			</div>
+			<div th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}"></div>
+		</div>
+		<div>
 			<label for="identificador">Identificador</label>
 			<div>
 				<input type="text" id="identificador" th:field="*{identificador}">
