@@ -1,6 +1,5 @@
 package com.ideas.springboot.form.controllers;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,6 +28,8 @@ import com.ideas.springboot.form.service.PaisService;
 import com.ideas.springboot.form.validator.UsuarioValidador;
 
 import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.SessionAttribute;
+
 
 @Controller
 @SessionAttributes("usuario")
@@ -58,7 +59,7 @@ public class FormController {
 		usuario.setIdentificador("1234567-K");
 		model.addAttribute("titulo", "Formulario usuarios");
 		model.addAttribute("usuario", usuario);
-		return "form";
+		return "form2";
 	}
 
 	@ModelAttribute("listaPaises")
@@ -105,17 +106,27 @@ public class FormController {
 	}
 
 	@PostMapping("/form")
-	public String procesar(@Valid Usuario usuario, BindingResult result, Model model, SessionStatus status) {
+	public String procesar(@Valid Usuario usuario, BindingResult result, Model model) {
 		// validator.validate(usuario, result);
-		model.addAttribute("titulo", "Resultado form");
 
 		if (result.hasErrors()) {
-			return "form";
+			model.addAttribute("titulo", "Resultado form");
+			return "form2";
 		}
-
-		model.addAttribute("usuario", usuario);
+		
+		return "redirect:/ver";
+	}
+	
+	@GetMapping("/ver")
+	public String ver(@SessionAttribute(name="usuario", required = false) Usuario usuario, Model model, SessionStatus status){
+		if(usuario == null) {
+			return "redirect:/form";
+		}
+		model.addAttribute("titulo", "Resultado form");
+		
 		status.setComplete();
 		return "resultado";
 	}
+	
 
 }
