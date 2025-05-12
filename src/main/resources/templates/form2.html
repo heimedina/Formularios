@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http:/www-thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="${titulo}">Insert title here</title>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+	<h3 th:text="${titulo}">Insert title here</h3>
+	<div class="container">
+		<form th:action="@{/form}" th:object="${usuario}" method="post">
+			<div class="form-group">
+				<label for="pais.id" class="col-form-label">País</label>
+				<div>
+					<select type="text" id="pais" th:field="*{pais.id}" class="form-control">
+						<option value="">--Seleccionar--</option>
+						<option th:each="pais: ${listaPaises}" th:text="${pais.nombre}" th:value="${pais.id}"></option>
+					</select>
+				</div>
+				<div th:if="${#fields.hasErrors('pais.id')}" th:errors="*{pais.id}" class="alert alert-danger"></div>
+			</div>
+			<div class="form-group">
+				<label class="col-form-label">Roles</label>
+				<div th:each="role: ${listaRolesMap.entrySet()}" class="row">
+					<input type="checkbox" th:field="*{roles}" th:value="${role.key}" class="col-form-label col-sm-2"> 
+					<label th:for="${#ids.prev('roles')}" th:text="${role.value}" class="col-form-label col-sm-2"></label>
+				</div>
+				<div th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}" class="alert alert-danger"></div>
+			</div>
+			<div class="form-group row">
+				<label for="identificador" class="col-form-label">Identificador</label>
+				<div>
+					<input type="text" id="identificador" th:field="*{identificador}" class="form-control">
+				</div>
+				<div th:if="${#fields.hasErrors('identificador')}" th:errors="*{identificador}" class="alert alert-danger"></div>
+			</div>
+			<div class="form-group">
+				<label for="nombre" class="col-form-label">Nombre</label>
+				<div>
+					<input type="text" id="nombre" th:field="*{nombre}" class="form-control">
+				</div>
+				<div th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" class="alert alert-danger"></div>
+			</div>
+			<div class="form-group">
+				<label for="apellido" class="col-form-label">Apellido</label>
+				<div>
+					<input type="text" id="apellido" th:field="*{apellido}" class="form-control">
+				</div>
+				<div th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}" class="alert alert-danger"></div>
+			</div>
+			<div class="form-group">
+				<label for="username" class="col-form-label">Username</label>
+				<div>
+					<input type="text" id="username" th:field="*{username}" class="form-control">
+				</div>
+				<div th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="alert alert-danger"></div>
+			</div>
+			<div class="form-group">
+				<label for="password" class="col-form-label">Password</label>
+				<div>
+					<input type="text" th:field="*{password}" id="password" class="form-control">
+				</div>
+				<div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="alert alert-danger"></div>
+			</div>
+			<div class="form-group">
+				<label for="email" class="col-form-label">Email</label>
+				<div>
+					<input type="text" id="email" th:field="*{email}" class="form-control">
+				</div>
+				<div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="alert alert-danger"></div>
+			</div>
+			<div class="form-group">
+				<label for="cuenta" class="col-form-label">Cuenta</label>
+				<div>
+					<input type="number" id="cuenta" th:field="*{cuenta}" class="form-control">
+				</div>
+				<div th:if="${#fields.hasErrors('cuenta')}" th:errors="*{cuenta}" class="alert alert-danger"></div>
+			</div>
+			<div class="form-group">
+				<label for="fechaNacimiento" class="col-form-label">Fecha</label>
+				<div>
+					<input type="date" id="fechaNacimiento" th:field="*{fechaNacimiento}" placeholder="yyyy/MM/dd" class="form-control">
+				</div>
+				<div th:if="${#fields.hasErrors('fechaNacimiento')}" th:errors="*{fechaNacimiento}" class="alert alert-danger"></div>
+			</div>
+			<div class="form-group">
+				<div>
+					<input type="submit" value="Enviar" class="btn btn-primary">
+				</div>
+			</div>
+
+		</form>
+	</div>
+
+</body>
+</html>
