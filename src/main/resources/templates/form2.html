@@ -9,9 +9,9 @@
 	<h3 th:text="${titulo}">Insert title here</h3>
 	<div class="container">
 		<form th:action="@{/form}" th:object="${usuario}" method="post">
-			<div class="form-group">
-				<label for="pais.id" class="col-form-label">País</label>
-				<div>
+			<div class="form-group row">
+				<label for="pais.id" class="col-form-label col-sm-2">País</label>
+				<div class="row col-sm-4">
 					<select type="text" id="pais" th:field="*{pais.id}" class="form-control">
 						<option value="">--Seleccionar--</option>
 						<option th:each="pais: ${listaPaises}" th:text="${pais.nombre}" th:value="${pais.id}"></option>
@@ -21,70 +21,70 @@
 			</div>
 			<div class="form-group">
 				<label class="col-form-label">Roles</label>
-				<div th:each="role: ${listaRolesMap.entrySet()}" class="row">
+				<div th:each="role: ${listaRolesMap.entrySet()}" class="row col-sm-4">
 					<input type="checkbox" th:field="*{roles}" th:value="${role.key}" class="col-form-label col-sm-2"> 
 					<label th:for="${#ids.prev('roles')}" th:text="${role.value}" class="col-form-label col-sm-2"></label>
 				</div>
 				<div th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}" class="alert alert-danger"></div>
 			</div>
 			<div class="form-group row">
-				<label for="identificador" class="col-form-label">Identificador</label>
-				<div>
+				<label for="identificador" class="col-form-label col-sm-2">Identificador</label>
+				<div class="row col-sm-4">
 					<input type="text" id="identificador" th:field="*{identificador}" class="form-control">
 				</div>
 				<div th:if="${#fields.hasErrors('identificador')}" th:errors="*{identificador}" class="alert alert-danger"></div>
 			</div>
-			<div class="form-group">
-				<label for="nombre" class="col-form-label">Nombre</label>
-				<div>
+			<div class="form-group row">
+				<label for="nombre" class="col-form-label col-sm-2">Nombre</label>
+				<div class="row col-sm-4">
 					<input type="text" id="nombre" th:field="*{nombre}" class="form-control">
 				</div>
 				<div th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" class="alert alert-danger"></div>
 			</div>
-			<div class="form-group">
-				<label for="apellido" class="col-form-label">Apellido</label>
-				<div>
+			<div class="form-group row">
+				<label for="apellido" class="col-form-label col-sm-2">Apellido</label>
+				<div class="row col-sm-4">
 					<input type="text" id="apellido" th:field="*{apellido}" class="form-control">
 				</div>
 				<div th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}" class="alert alert-danger"></div>
 			</div>
-			<div class="form-group">
-				<label for="username" class="col-form-label">Username</label>
-				<div>
+			<div class="form-group row">
+				<label for="username" class="col-form-label col-sm-2">Username</label>
+				<div class="row col-sm-4">
 					<input type="text" id="username" th:field="*{username}" class="form-control">
 				</div>
 				<div th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="alert alert-danger"></div>
 			</div>
-			<div class="form-group">
-				<label for="password" class="col-form-label">Password</label>
-				<div>
+			<div class="form-group row">
+				<label for="password" class="col-form-label col-sm-2">Password</label>
+				<div class="row col-sm-4">
 					<input type="text" th:field="*{password}" id="password" class="form-control">
 				</div>
 				<div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="alert alert-danger"></div>
 			</div>
-			<div class="form-group">
-				<label for="email" class="col-form-label">Email</label>
-				<div>
+			<div class="form-group row">
+				<label for="email" class="col-form-label col-sm-2">Email</label>
+				<div class="row col-sm-4">
 					<input type="text" id="email" th:field="*{email}" class="form-control">
 				</div>
 				<div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="alert alert-danger"></div>
 			</div>
-			<div class="form-group">
-				<label for="cuenta" class="col-form-label">Cuenta</label>
-				<div>
+			<div class="form-group row">
+				<label for="cuenta" class="col-form-label col-sm-2">Cuenta</label>
+				<div class="row col-sm-4">
 					<input type="number" id="cuenta" th:field="*{cuenta}" class="form-control">
 				</div>
 				<div th:if="${#fields.hasErrors('cuenta')}" th:errors="*{cuenta}" class="alert alert-danger"></div>
 			</div>
-			<div class="form-group">
-				<label for="fechaNacimiento" class="col-form-label">Fecha</label>
-				<div>
+			<div class="form-group row">
+				<label for="fechaNacimiento" class="col-form-label col-sm-2">Fecha</label>
+				<div class="row col-sm-4">
 					<input type="date" id="fechaNacimiento" th:field="*{fechaNacimiento}" placeholder="yyyy/MM/dd" class="form-control">
 				</div>
 				<div th:if="${#fields.hasErrors('fechaNacimiento')}" th:errors="*{fechaNacimiento}" class="alert alert-danger"></div>
 			</div>
-			<div class="form-group">
-				<div>
+			<div class="form-group row">
+				<div class="row col-sm-4">
 					<input type="submit" value="Enviar" class="btn btn-primary">
 				</div>
 			</div>
