@@ -125,7 +125,7 @@ public class FormController {
 		model.addAttribute("titulo", "Resultado form");
 		
 		status.setComplete();
-		return "resultado";
+		return "resultadostyles";
 	}
 	
 
