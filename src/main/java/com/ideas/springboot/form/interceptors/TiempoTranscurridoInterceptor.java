@@ -21,6 +21,7 @@ public class TiempoTranscurridoInterceptor implements HandlerInterceptor{
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		logger.info("TiempoTranscurridoInterceptor: preHandle() entrando....");
+		logger.info("Interceptando: "+handler);
 		long tiempoInicio = System.currentTimeMillis();
 		request.setAttribute("tiempoInicio", tiempoInicio);
 		
